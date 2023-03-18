@@ -17,3 +17,5 @@ As illustrated in the figure, we can address the follow weaknesses of our DoRM m
 3. $\textbf{Unnatural blurs and artifacts can be found in many samples of GDA, e.g., FFHQ --> Babies.}$
 
 Additionally, the proposed DoRM++ has reduced the sensitivity of the hyperparameters $\alpha$ and improves the performance in terms of both source-domain and cross-domain consistency, significantly.
+
+## 1-shot GDA
