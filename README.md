@@ -1,7 +1,7 @@
 # Qualitative results of DoRM and DoRM++
 
 ## 10-shot GDA
-In this section, we illustrate the qualitative results of DoRM and DoRM++ on 10-shot GDA.
+In this section, we illustrate the qualitative results of DoRM and DoRM++ on 10-shot GDA. Note that the Scalable Vector Graphics of images can be found in the corresponding PDF file.
 
 #### 10 training images on 10-shot GDA
 
