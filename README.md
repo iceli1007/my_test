@@ -22,4 +22,10 @@ Additionally, the proposed DoRM++ has reduced the sensitivity of the hyperparame
 
 #### Qualitative results of DoRM and DoRM++ on 1-shot GDA
 
+![10-shot results](55ab63006a60591f66e2f0217ed5f85.jpg)
+
+
+
 #### Qualitative comparison with SOTA methods on 1-shot GDA
+
+![10-shot results](ac30edbc9e770d5e66c76214665a1e9.jpg)
