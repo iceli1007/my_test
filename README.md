@@ -12,7 +12,13 @@ $$\mathcal{L}_{s c c}=\|\operatorname{mask}(\Delta {w}, \alpha) \cdot({w}_B-{w}_
 
 Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta {w}, \alpha)$ determines which channels to retain. Specifically, let $|\Delta w_{s_{\alpha N}}|$ be the $\alpha N$-th largest element of $\Delta {w}$. Then, each dimension of $\operatorname{mask}(\Delta {w}, \alpha)$ is calculated as follows:
 
-$$\operatorname{mask}(\Delta w, \alpha)_i= \begin{cases}1 \quad \|\Delta {w}_i\|<\|\Delta {w}_{s_{\alpha N}}\| \\ 0 \quad |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|\end{cases}$$
+$$
+\operatorname{mask}(\Delta w, \alpha)_i= 
+\begin{cases}
+1 \quad \|\Delta {w}_i\|<\|\Delta {w}_{s_{\alpha N}}\| \\
+0 \quad |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|
+\end{cases}
+$$
 
 
 The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $\mathcal{L}_{scc}$.
