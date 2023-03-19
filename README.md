@@ -10,7 +10,7 @@ The selective cross-domain consistency loss, $\mathcal{L}_{scc}$, is defined as 
 
 $\mathcal{L}_{s c c}=\left\|\operatorname{mask}(\Delta \boldsymbol{w}, \alpha) \cdot\left(\boldsymbol{w}_B-\boldsymbol{w}_A\right)\right\|_1$.
 
-Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)$ determines which channels to retain. Specifically, let $\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right|$ be the $\alpha N$-th largest element of $\Delta \boldsymbol{w}$. Then, each dimension of $\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)$ is calculated as follows:
+Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)$ determines which channels to retain. Specifically, let $\left\|\Delta \boldsymbol{w}_{s_{\alpha N}}\right\|$ be the $\alpha N$-th largest element of $\Delta \boldsymbol{w}$. Then, each dimension of $\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)$ is calculated as follows:
 
 $\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)_i= \begin{cases}1 & \left|\Delta \boldsymbol{w}_i\right|<\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right| \\ 0 & \left|\Delta \boldsymbol{w}_i\right| \geq\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right|\end{cases}$
 
