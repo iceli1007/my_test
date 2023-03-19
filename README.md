@@ -8,15 +8,12 @@ We begin by adopting the selective cross-domain consistency loss, $L_{scc}$, as 
 
 The selective cross-domain consistency loss, $\mathcal{L}_{scc}$, is defined as follows:
 
-$\mathcal{L}_{s c c}=\|\operatorname{mask}(\Delta {w}, \alpha) \cdot({w}_B-{w}_A)\|_1$.
+$$\mathcal{L}_{s c c}=\|\operatorname{mask}(\Delta {w}, \alpha) \cdot({w}_B-{w}_A)\|_1$$.
 
 Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta {w}, \alpha)$ determines which channels to retain. Specifically, let $|\Delta w_{s_{\alpha N}}|$ be the $\alpha N$-th largest element of $\Delta {w}$. Then, each dimension of $\operatorname{mask}(\Delta {w}, \alpha)$ is calculated as follows:
 
-$\operatorname{mask}(\Delta w, \alpha)_i= \begin{cases}1 & |\Delta {w}_i|<|\Delta {w}_{s_{\alpha N}}| \\ 0 & |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|\end{cases}$
+$$\operatorname{mask}(\Delta w, \alpha)_i= \begin{cases}1 \quad \|\Delta {w}_i\|<\|\Delta {w}_{s_{\alpha N}}\| \\ 0 \quad |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|\end{cases}$$
 
-$$
-\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)_i= \begin{cases}1 & \left|\Delta \boldsymbol{w}_i\right|<\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right| \\ 0 & \left|\Delta \boldsymbol{w}_i\right| \geq\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right|\end{cases}
-$$
 
 The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $\mathcal{L}_{scc}$.
 
