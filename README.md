@@ -8,17 +8,17 @@ We begin by adopting the selective cross-domain consistency loss, $L_{scc}$, as 
 
 The selective cross-domain consistency loss, $\mathcal{L}_{scc}$, is defined as follows:
 
-$\mathcal{L}_{s c c}=\left\|\operatorname{mask}(\Delta \boldsymbol{w}, \alpha) \cdot\left(\boldsymbol{w}_B-\boldsymbol{w}_A\right)\right\|_1$.
+$\mathcal{L}_{s c c}=\left\|\operatorname{mask}(\Delta {w}, \alpha) \cdot\left({w}_B-{w}_A\right)\right\|_1$.
 
 Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta {w}, \alpha)$ determines which channels to retain. Specifically, let $|\Delta {w}_{s_{\alpha N}}|$ be the $\alpha N$-th largest element of $\Delta {w}$. Then, each dimension of $\operatorname{mask}(\Delta {w}, \alpha)$ is calculated as follows:
 
-$\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)_i= \begin{cases}1 & \left|\Delta \boldsymbol{w}_i\right|<\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right| \\ 0 & \left|\Delta \boldsymbol{w}_i\right| \geq\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right|\end{cases}$
+$\operatorname{mask}(\Delta {w}, \alpha)_i= \begin{cases}1 & \left|\Delta {w}_i\right|<\left|\Delta {w}_{s_{\alpha N}}\right| \\ 0 & \left|\Delta {w}_i\right| \geq\left|\Delta {w}_{s_{\alpha N}}\right|\end{cases}$
 
 The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $\mathcal{L}_{scc}$.
 
 2) $\textbf{Similarity-based structure loss} L_{ss}$
 
-To explicitly model cross-domain consistency, we propose a novel similarity-based structure loss called $L_{ss}$. Our intuition is that the autocorrelation maps of the source image and its corresponding target image should be consistent. To achieve this, we extract the intermediate tokens $F_A$ and $F_B$ of the source image $I_A$ and its corresponding target image $I_B$ from the k-th layer of the CLIP image encoder. These tokens are denoted by $\boldsymbol{F}_A=\left\{\boldsymbol{F}_A^1, \ldots, \boldsymbol{F}_A^n\right\}$ and $\boldsymbol{F}_B=\left\{\boldsymbol{F}_B^1, \ldots, \boldsymbol{F}_B^n\right\}$, respectively. We define the autocorrelation maps as $\boldsymbol{M}_A=\frac{\boldsymbol{F}^T_A}{\left|\boldsymbol{F}^T_A\right|}\times \frac{\boldsymbol{F}_A}{\left|\boldsymbol{F}_A\right|}$ and $\frac{\boldsymbol{F}^T_B}{\left|\boldsymbol{F}^T_B\right|}\times \frac{\boldsymbol{F}_B}{\left|\boldsymbol{F}_B\right|}$, where $\boldsymbol{M}_A^{i,j}=\frac{\boldsymbol{F}_A^i \cdot\boldsymbol{F}_A^j}{\left|\boldsymbol{F}_A^i\right| \left|\boldsymbol{F}_A^j\right|}$ and $\boldsymbol{M}_B^{i,j}=\frac{\boldsymbol{F}_B^i \cdot\boldsymbol{F}_B^j}{\left|\boldsymbol{F}_B^i\right| \left|\boldsymbol{F}_B^j\right|}$. $L{ss}$ is then defined as the L1 norm of the difference between $\boldsymbol{M}_A$ and $\boldsymbol{M}_B$:
+To explicitly model cross-domain consistency, we propose a novel similarity-based structure loss called $L_{ss}$. Our intuition is that the autocorrelation maps of the source image and its corresponding target image should be consistent. To achieve this, we extract the intermediate tokens $F_A$ and $F_B$ of the source image $I_A$ and its corresponding target image $I_B$ from the k-th layer of the CLIP image encoder. These tokens are denoted by ${F}_A=\left\{{F}_A^1, \ldots, {F}_A^n\right\}$ and ${F}_B=\left\{{F}_B^1, \ldots, {F}_B^n\right\}$, respectively. We define the autocorrelation maps as ${M}_A=\frac{{F}^T_A}{\left|{F}^T_A\right|}\times \frac{{F}_A}{\left|{F}_A\right|}$ and $\frac{{F}^T_B}{\left|{F}^T_B\right|}\times \frac{{F}_B}{\left|{F}_B\right|}$, where ${M}_A^{i,j}=\frac{{F}_A^i \cdot{F}_A^j}{\left|{F}_A^i\right| \left|{F}_A^j\right|}$ and ${M}_B^{i,j}=\frac{{F}_B^i \cdot{F}_B^j}{\left|{F}_B^i\right| \left|{F}_B^j\right|}$. $L{ss}$ is then defined as the L1 norm of the difference between ${M}_A$ and ${M}_B$:
 
 
 $L_{ss}=\frac{1}{n^2}\sum_{i=1}^n\sum_{j=1}^n\left\|M^{i,j}_A-M^{i,j}_B\right\|_1$
