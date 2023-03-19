@@ -20,8 +20,7 @@ The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency bet
 
 To explicitly model cross-domain consistency, we propose a novel similarity-based structure loss called $L_{ss}$. Our intuition is that the autocorrelation maps of the source image and its corresponding target image should be consistent. To achieve this, we extract the intermediate tokens $F_A$ and $F_B$ of the source image $I_A$ and its corresponding target image $I_B$ from the k-th layer of the CLIP image encoder. These tokens are denoted by ${F}_A=\{{F}_A^1, \ldots, {F}_A^n\}$ and ${F}_B=\{{F}_B^1, \ldots, {F}_B^n\}$, respectively. We define the autocorrelation maps as ${M}_A=\frac{{F}^T_A}{|{F}^T_A|}\times \frac{{F}_A}{|{F}_A|}$ and $\frac{{F}^T_B}{|{F}^T_B|}\times \frac{{F}_B}{|{F}_B|}$, where ${M}_A^{i,j}=\frac{{F}_A^i \cdot{F}_A^j}{|{F}_A^i| |{F}_A^j|}$ and ${M}_B^{i,j}=\frac{{F}_B^i \cdot{F}_B^j}{|{F}_B^i| |{F}_B^j|}$. $L{ss}$ is then defined as the L1 norm of the difference between ${M}_A$ and ${M}_B$:
 
-
-$L_{ss}=\frac{1}{n^2}\sum_{i=1}^n \sum_{j=1}^n\|M^{i,j}_A-M^{i,j}_B\|_1$
+$L_{ss}=\frac{1}{n^2}\sum\limits_{i=1}^n \sum\limits_{j=1}^n\|M^{i,j}_A-M^{i,j}_B\|_1$
 
 3) $\textbf{Overall Training Loss}$
 
