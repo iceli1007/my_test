@@ -20,7 +20,6 @@ $$
 \end{cases}
 $$
 
-
 The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $\mathcal{L}_{scc}$.
 
 2) $\textbf{Similarity-based structure loss} L_{ss}$
