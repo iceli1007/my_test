@@ -1,7 +1,7 @@
 ## The proposed DoRM++
 
 ![fig1](8cf9f31eba8f2d7d59e4edc64fd65cf.png)
-![fig1](cbb31395c6a24821ccc32c9c6e5fc0e.png)
+![fig2](cbb31395c6a24821ccc32c9c6e5fc0e.png)
 
 ## 10-shot GDA
 In this section, we illustrate the qualitative results of DoRM and DoRM++ on 10-shot GDA. Note that the Scalable Vector Graphics of images can be found in the corresponding PDF file.
@@ -32,3 +32,9 @@ As illustarted in figures, we can also address the weaknesses of our DoRM mentio
 #### Qualitative comparison with SOTA methods on 1-shot GDA
 
 ![10-shot results](ac30edbc9e770d5e66c76214665a1e9.jpg)
+
+## Response to Reviewer ypeq Q4: Qualitative results of the interpolation between source and target domains.  
+
+Following the Reviewer ypeq's suggestion, we simply invert the target samples back to the latent space and interpolate the inverse latent codes with source samples. As illustrated in figure, we cannot get the similar results to our DoRM
+
+![interpolation](d13083b7153d8c4700dabd4312b9abb.jpg)
