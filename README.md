@@ -28,15 +28,13 @@ To explicitly model cross-domain consistency, we propose a novel similarity-base
 
 $$L_{ss}=\frac{1}{n^2}\sum\limits_{i=1}^n \sum\limits_{j=1}^n||M^{i,j}_A-M^{i,j}_B||_1$$
 
-3) $\textbf{Overall Training Loss}$
+#### 3) Overall Training Loss
 
 The loss of the proposed DoRM++ consists of three terms, the adversarial loss $L_{adv}$, selective cross-domain consistency loss $L_{scc}$, and similarity-based structure loss $L_{ss}$.
 
 $$L_{overall}=L_{adv}+\lambda_{scc} L_{scc}+\lambda_{ss}L_{ss}$$
 
 In the most experiments, we use $\lambda_{scc}=6\cdot\frac{n_{iter}}{N_{iter}}$ and $\lambda_{ss}=50$, where $N_{iter}$ and $n_{iter}$ denote the total number of training iterations and the $n_{iter}$-th iteration of training, respectively. That is, $\lambda_{scc}$ increases linearly as the training proceeds. Besides, when the target domain is among FFHQ-Baby, Amedeo and Otto Dix, we use $\lambda_{scc}=3\cdot\frac{n_{iter}}{N_{iter}}$ and $\lambda_{ss}=10$.
-
-
 
 [1] Towards Diverse and Faithful One-shot Adaption of Generative Adversarial Networks. NIPS 2022
 
