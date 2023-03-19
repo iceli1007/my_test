@@ -1,7 +1,7 @@
 ## The proposed DoRM++
 
 ![fig1](8cf9f31eba8f2d7d59e4edc64fd65cf.png)
-![fig2](cbb31395c6a24821ccc32c9c6e5fc0e.png)
+![fig2](3761a95aeb4dacbf366e1dc0b089647.png)
 
 ## 10-shot GDA
 In this section, we illustrate the qualitative results of DoRM and DoRM++ on 10-shot GDA. Note that the Scalable Vector Graphics of images can be found in the corresponding PDF file.
