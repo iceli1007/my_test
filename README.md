@@ -19,11 +19,11 @@ As illustrated in the figure, we can address the follow weaknesses of our DoRM m
 Additionally, the proposed DoRM++ has reduced the sensitivity of the hyperparameters $\alpha$ and improves the performance in terms of both source-domain and cross-domain consistency, significantly.
 
 ## 1-shot GDA
+As illustarted in figures, we can also address the weaknesses of our DoRM mentioned by the reviewers through adjusting the hyper-parameter $\alpha$ on the 1-shot GDA. Morever, our proposed DoRM++ has outpermed the SOTA methods in terms of both cross-domain and target domain consistency.
 
 #### Qualitative results of DoRM and DoRM++ on 1-shot GDA
 
 ![10-shot results](55ab63006a60591f66e2f0217ed5f85.jpg)
-
 
 
 #### Qualitative comparison with SOTA methods on 1-shot GDA
