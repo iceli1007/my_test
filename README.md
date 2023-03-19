@@ -1,8 +1,8 @@
-# Qualitative results of DoRM and DoRM++
+## The proposed DoRM++
 
 The proposed approach DoRM++ have been shown below:
 
-1) $\textbf{Selective cross-domain consistency loss} L_{scc}$ [1]
+1) $\textbf{Selective cross-domain consistency loss}$ $L_{scc}$ [1]
 
 We begin by adopting the selective cross-domain consistency loss, $L_{scc}$, as proposed in [1]. This loss function aims to identify and preserve domain-sharing attributes in the $W+$ space. The underlying assumption is that attributes that are similar between the source and target domains during adaptation are more likely to be domain-sharing attributes. To achieve this, $L_{scc}$ dynamically analyzes and retains these attributes. First, it inverts the source and corresponding target images into $W+$ latent codes, $w_A$ and $w_B$, respectively, using a pre-trained inversion model such as pSp or e4e, for each iteration. Next, it computes the difference, $\Delta w$, between the centers of a source queue of $W+$ latent codes, $X_A$, and a target queue of $W+$ latent codes, $X_B$, where $X_A$ and $X_B$ are dynamically updated with $w_A$ and $w_B$ during training. The loss function then encourages $w_A$ and $w_B$ to be consistent in channels with less difference, thereby facilitating the preservation of domain-sharing attributes. 
 
