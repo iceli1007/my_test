@@ -14,6 +14,10 @@ Here, $\alpha$ represents the proportion of preserved attributes, and $\operator
 
 $\operatorname{mask}(\Delta w, \alpha)_i= \begin{cases}1 & |\Delta {w}_i|<|\Delta {w}_{s_{\alpha N}}| \\ 0 & |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|\end{cases}$
 
+$$
+\operatorname{mask}(\Delta \boldsymbol{w}, \alpha)_i= \begin{cases}1 & \left|\Delta \boldsymbol{w}_i\right|<\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right| \\ 0 & \left|\Delta \boldsymbol{w}_i\right| \geq\left|\Delta \boldsymbol{w}_{s_{\alpha N}}\right|\end{cases}
+$$
+
 The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $\mathcal{L}_{scc}$.
 
 2) $\textbf{Similarity-based structure loss} L_{ss}$
