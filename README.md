@@ -1,50 +1,5 @@
 ## The proposed DoRM++
 
-
-The proposed approach DoRM++ have been shown below:
-
-#### 1) Selective cross-domain consistency loss $L_{scc}$ [1]
-
-We begin by adopting the selective cross-domain consistency loss, $L_{scc}$, as proposed in [1]. This loss function aims to identify and preserve domain-sharing attributes in the $W+$ space. The underlying assumption is that attributes that are similar between the source and target domains during adaptation are more likely to be domain-sharing attributes. To achieve this, $L_{scc}$ dynamically analyzes and retains these attributes. First, it inverts the source and corresponding target images into $W+$ latent codes, $w_A$ and $w_B$, respectively, using a pre-trained inversion model such as pSp or e4e, for each iteration. Next, it computes the difference, $\Delta w$, between the centers of a source queue of $W+$ latent codes, $X_A$, and a target queue of $W+$ latent codes, $X_B$, where $X_A$ and $X_B$ are dynamically updated with $w_A$ and $w_B$ during training. The loss function then encourages $w_A$ and $w_B$ to be consistent in channels with less difference, thereby facilitating the preservation of domain-sharing attributes. 
-
-The selective cross-domain consistency loss, ${L}_{scc}$, is defined as follows:
-
-$${L}_{s c c}=||\operatorname{mask}(\Delta {w}, \alpha) \cdot({w}_B-{w}_A)||_1$$
-
-Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta {w}, \alpha)$ determines which channels to retain. Specifically, let $|\Delta w_{s_{\alpha N}}|$ be the $\alpha N$-th largest element of $\Delta {w}$. Then, each dimension of $\operatorname{mask}(\Delta {w}, \alpha)$ is calculated as follows:
-
-$$
-\operatorname{mask}(\Delta w, \alpha)_i= 
-\begin{cases}
-1 \quad \|\Delta {w}_i\|<\|\Delta {w}_{s_{\alpha N}}\| \\
-0 \quad |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|
-\end{cases}
-$$
-
-The objective of $L_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $L_{scc}$.
-
-#### 2) Similarity-based structure loss $L_{ss}$
-
-To explicitly model cross-domain consistency, we propose a novel similarity-based structure loss called $L_{ss}$. Our intuition is that the autocorrelation maps of the source image and its corresponding target image should be consistent. To achieve this, we extract the intermediate tokens $F_A$ and $F_B$ of the source image $I_A$ and its corresponding target image $I_B$ from the k-th layer of the CLIP image encoder. These tokens are denoted by ${F}_A=\{{F}_A^1, \ldots, {F}_A^n\}$ and ${F}_B=\{{F}_B^1, \ldots, {F}_B^n\}$, respectively. We define the autocorrelation maps as ${M}_A=\frac{{F}^T_A}{|{F}^T_A|}\times \frac{{F}_A}{|{F}_A|}$ and ${M}_B=\frac{{F}^T_B}{|{F}^T_B|}\times \frac{{F}_B}{|{F}_B|}$. 
-
-The loss $L_{ss}$ is then defined as the L1 norm of the difference between ${M}_A$ and ${M}_B$:
-
-$$L_{ss}=\frac{1}{n^2}\sum\limits_{i=1}^n \sum\limits_{j=1}^n||M^{i,j}_A-M^{i,j}_B||_1$$
-
-where ${M}_A^{i,j}=\frac{{F}_A^i \cdot{F}_A^j}{|{F}_A^i| |{F}_A^j|}$ and ${M}_B^{i,j}=\frac{{F}_B^i \cdot{F}_B^j}{|{F}_B^i| |{F}_B^j|}$. 
-
-#### 3) Overall Training Loss
-
-The loss of the proposed DoRM++ consists of three terms, the adversarial loss $L_{adv}$, selective cross-domain consistency loss $L_{scc}$, and similarity-based structure loss $L_{ss}$.
-
-$$L_{overall}=L_{adv}+\lambda_{scc} L_{scc}+\lambda_{ss}L_{ss}$$
-
-In the most experiments, we use $\lambda_{scc}=6\cdot\frac{n_{iter}}{N_{iter}}$ and $\lambda_{ss}=50$, where $N_{iter}$ and $n_{iter}$ denote the total number of training iterations and the $n_{iter}$-th iteration of training, respectively. That is, $\lambda_{scc}$ increases linearly as the training proceeds. Besides, when the target domain is among FFHQ-Baby, Amedeo and Otto Dix, we use $\lambda_{scc}=3\cdot\frac{n_{iter}}{N_{iter}}$ and $\lambda_{ss}=10$.
-
-[1] Towards Diverse and Faithful One-shot Adaption of Generative Adversarial Networks. NIPS 2022
-
-
-
 ![fig1](8cf9f31eba8f2d7d59e4edc64fd65cf.png)
 ![fig2](cbb31395c6a24821ccc32c9c6e5fc0e.png)
 
