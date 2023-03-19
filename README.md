@@ -8,11 +8,11 @@ We begin by adopting the selective cross-domain consistency loss, $L_{scc}$, as 
 
 The selective cross-domain consistency loss, $\mathcal{L}_{scc}$, is defined as follows:
 
-$\mathcal{L}_{s c c}=\left\|\operatorname{mask}(\Delta {w}, \alpha) \cdot\left({w}_B-{w}_A\right)\right\|_1$.
+$\mathcal{L}_{s c c}=\|\operatorname{mask}(\Delta {w}, \alpha) \cdot({w}_B-{w}_A)\|_1$.
 
 Here, $\alpha$ represents the proportion of preserved attributes, and $\operatorname{mask}(\Delta {w}, \alpha)$ determines which channels to retain. Specifically, let $|\Delta w_{s_{\alpha N}}|$ be the $\alpha N$-th largest element of $\Delta {w}$. Then, each dimension of $\operatorname{mask}(\Delta {w}, \alpha)$ is calculated as follows:
 
-$\operatorname{mask}(\Delta w, \alpha)_i= \begin{cases}1 & \left|\Delta {w}_i\right|<\left|\Delta {w}_{s_{\alpha N}}\right| \\ 0 & \left|\Delta {w}_i\right| \geq\left|\Delta {w}_{s_{\alpha N}}\right|\end{cases}$
+$\operatorname{mask}(\Delta w, \alpha)_i= \begin{cases}1 & |\Delta {w}_i|<|\Delta {w}_{s_{\alpha N}}| \\ 0 & |\Delta {w}_i| \geq|\Delta {w}_{s_{\alpha N}}|\end{cases}$
 
 The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency between the source and target domains. This consistency typically indicates structural information. Therefore, we adopt latent codes corresponding to coarse spatial resolutions (4–8) and middle resolutions (16–32) in $\mathcal{L}_{scc}$.
 
@@ -21,7 +21,7 @@ The objective of $\mathcal{L}_{scc}$ is to maintain cross-domain consistency bet
 To explicitly model cross-domain consistency, we propose a novel similarity-based structure loss called $L_{ss}$. Our intuition is that the autocorrelation maps of the source image and its corresponding target image should be consistent. To achieve this, we extract the intermediate tokens $F_A$ and $F_B$ of the source image $I_A$ and its corresponding target image $I_B$ from the k-th layer of the CLIP image encoder. These tokens are denoted by ${F}_A=\{{F}_A^1, \ldots, {F}_A^n\}$ and ${F}_B=\{{F}_B^1, \ldots, {F}_B^n\}$, respectively. We define the autocorrelation maps as ${M}_A=\frac{{F}^T_A}{|{F}^T_A|}\times \frac{{F}_A}{|{F}_A|}$ and $\frac{{F}^T_B}{|{F}^T_B|}\times \frac{{F}_B}{|{F}_B|}$, where ${M}_A^{i,j}=\frac{{F}_A^i \cdot{F}_A^j}{|{F}_A^i| |{F}_A^j|}$ and ${M}_B^{i,j}=\frac{{F}_B^i \cdot{F}_B^j}{|{F}_B^i| |{F}_B^j|}$. $L{ss}$ is then defined as the L1 norm of the difference between ${M}_A$ and ${M}_B$:
 
 
-$L_{ss}=\frac{1}{n^2}\sum_{i=1}^n\sum_{j=1}^n\left\|M^{i,j}_A-M^{i,j}_B\right\|_1$
+$L_{ss}=\frac{1}{n^2}\sum_{i=1}^n\sum_{j=1}^n\|M^{i,j}_A-M^{i,j}_B\|_1$
 
 3) $\textbf{Overall Training Loss}$
 
